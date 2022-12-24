@@ -38,11 +38,7 @@ public class CommonSech {
         });
         for(int x = 0 ;x < entryList2.size();x ++) {
         	int id = entryList2.get(x).getKey();
-        	if (id == 2) {
-        		
-        	} else {
-        		textService.setQuanzhong(id, x);
-        	}
+        	textService.setQuanzhong(id, x);
 		}
 	}
 }
