@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/css/tanchuang.css" rel="stylesheet" type="text/css" />
+    <script src="/js/tanchuang.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆页面</title>
+    <script>
+    function createXMLHTTPObject(){
+        var XMLHttpFactories = [// 兼容不同浏览器和版本的创建函数数组
+            function () {return new XMLHttpRequest()},
+            function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+            function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+            function () {return new ActiveXObject("Microsoft.XMLHTTP")},
+        ];
+        var xmlhttp = false;
+        for (var i = 0; i < XMLHttpFactories.length; i ++ ){ 
+    	//尝试调用匿名函数，如果成功则返回XMLHttpRequest对象，否则继续调用下一个
+            try{
+                xmlhttp = XMLHttpFactories[i]();
+            }catch (e){
+                continue; 			// 如果发生异常，则继续下一个函数调用
+            }
+            break; 					// 如果成功，则中止循环
+        }
+        return xmlhttp; 				// 返回对象实例
+    }
+    var xmlHttp = createXMLHTTPObject();
+
+    function request(url)
+    {
+    	xmlHttp.open("POST",url, false);
+    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+    	xmlHttp.send("callback=functionName");
+    	var obj = JSON.parse(xmlHttp.responseText);
+    	if(obj.username == undefined) {
+    		alert("登录失败!");
+		} else {
+			xmlHttp.open("GET","sign", false);
+	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+	    	xmlHttp.send("callback=functionName");
+			alert("登录成功!");
+			window.location.href="/index.html";
+		}
+    }
+    </script>
+        <!-- author xjt -->
+</head>
+<body>
+<div id="myModal" class="modal">
+		  <!-- 弹窗内容 -->
+			<div class="modal-content">
+			  <div class="modal-header">
+			    <span class="close">&times;</span>
+			    <h2>登录成功!</h2>
+			  </div>
+			  <div class="modal-body">
+			  	<p>已自动签到!</p>
+			  </div>
+			  <div class="modal-footer">
+			   <button class="ok"></button>&nbsp;<button class="no"></button>
+			  </div>
+			</div>
+			</div>
+    <div class="login">
+        <h2>登陆</h2>
+        <div class="login_form">
+            <span>邮箱：</span>
+            <input type="text" id="email" placeholder="请输入邮箱">
+            <br>
+            <span>密码：</span>
+            <input type="password" id="password" placeholder="请输入密码">
+        </div>
+        <div class="btn">
+            <button class="login_btn" onclick="login()">登 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+        </div>
+    </div>
+</body>
+<script>
+    function login(){
+        console.log('登录按钮点击了');
+        var x=  document.getElementById("email").value//获取输入框元素
+		var y=  document.getElementById("password").value//获取输入框元素
+        var url = "login?email=" + x + "&password=" + y; 
+        request(url);
+    }
+</script>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background-image: linear-gradient(#a18cd1 0%, #fbc2eb 100%);
+        background-size: cover;
+        flex: 1;
+        align-items: center;
+    }
+    .login{
+        text-align: center;
+        margin: 0 auto;
+        width: 600px;
+        height: 520px;
+        background-color: rgba(87, 86, 86, 0.2);
+        border-radius: 25px;
+        box-shadow: 5px 2px 35px -7px #ff9a9e;
+    }
+    .login h2{
+        margin-top: 40px;
+        color: aliceblue;
+        font-weight: 100;
+    }
+    .login_form{
+        padding: 20px;
+    }
+    .login_form span{
+        color: rgb(131, 220, 255);
+        font-size: 18px;
+        font-weight: 100;
+    }
+    .login_form input{
+        background-color: transparent;
+        width: 320px;
+        padding: 2px;
+        text-indent: 2px;
+        color: white;
+        font-size: 20px;
+        height: 45px;
+        margin: 30px 30px 30px 5px;
+        outline: none;
+        border: 0;
+        border-bottom: 1px solid rgb(131, 220, 255);
+    }
+    input::placeholder{
+        color: #fbc2eb;
+        font-weight: 100;
+        font-size: 18px;
+        font-style: italic;
+    }
+    .login_btn{
+        background-color: rgba(255, 255, 255, 0.582);
+        border: 1px solid rgb(190, 225, 255);
+        padding: 10px;
+        width: 240px;
+        height: 60px;
+        border-radius: 30px;
+        font-size: 30px;
+        color: rgb(100, 183, 255);
+        font-weight: 100;       
+        margin-top: 15px;
+    }
+    .login_btn:hover{
+        box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+        background-color: transparent;
+        color: white;
+        /* 选择动画 */
+        animation: login_mation 0.5s;
+    }
+
+    /* 定义动画 */
+    @keyframes login_mation
+    {
+        from {
+            background-color: rgba(255, 255, 255, 0.582);
+            box-shadow: 0px 0px 15px 2px rgb(190, 225, 255);
+        }
+        to {
+            background-color: transparent;
+            color: white;
+            box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+        }
+    }
+</style>
+
+</html>
+

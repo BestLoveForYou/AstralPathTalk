@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    color: #4c4c4c;
+}
+body {
+    min-width: 100%;
+}
+.f {
+	color: #ffffff;
+}
+.b {
+	color: #020202;
+	font-size: 18px;
+}
+.a {
+	color: #020202;
+	font-size: 30px;
+	color: #4c4c4c;
+}
+.e {
+	color: #020202;
+	font-size: 30px;
+	color: #4c4c4c;
+}
+header, section, article, nav, aside, footer {
+    display: block;
+    text-align: center;
+    text-shadow: 1px 1px 1px #444;
+    font-size:1.2em;
+
+}
+/*页眉框样式：限高、限宽*/
+header {
+    background-color: hsla(180, 53%, 7%, 0.9);
+    min-height: 60px;
+    padding: 10px 20px;
+    min-width: 100%;
+}
+/*主体区域框样式：满宽显示*/
+section {
+    min-width: 100%;
+}
+/*导航框样式：固定宽度*/
+nav {
+    background-color: hsla(-1, 0%, 93%, 0.9);
+    padding: 1%;
+    width: 220px;
+}
+/*文档栏样式*/
+article {
+    background-color: hsla(-1, 0%, 100%, 0.9);
+    padding: 1%;
+}
+/*侧边栏样式：弹性宽度*/
+aside {
+    background-color: hsla(-1, 0%, 93%, 0.9);
+    padding: 1%;
+    width: 20px;
+}
+/*页脚样式：限高、限宽*/
+footer {
+    background-color: hsla(-1, 0%, 100%, 0.9);
+	min-height: 5%;
+	font-size: 5px;
+    padding: 1%;
+    min-width: 100%;
+}
+/*flexbox样式*/
+body {
+    /*设置body为伸缩容器*/
+    display: -webkit-box;/*老版本：iOS 6-, Safari 3.1-6*/
+    display: -moz-box;/*老版本：Firefox 19- */
+    display: -ms-flexbox;/*混合版本：IE10*/
+    display: -webkit-flex;/*新版本：Chrome*/
+    display: flex;/*标准规范：Opera 12.1, Firefox 20+*/
+    /*伸缩项目换行*/
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: normal;
+    -moz-box-direction: normal;
+    -moz-box-lines: multiple;
+    -webkit-box-lines: multiple;
+    -webkit-flex-flow: column wrap;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+}
+/*实现stick footer效果*/
+section {
+    display: -moz-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    -moz-box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -webkit-box-direction: normal;
+    -moz-box-lines: multiple;
+    -webkit-box-lines: multiple;
+    -ms-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -moz-box-align: stretch;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+}
+/*文章区域伸缩样式*/
+article {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    text-align: left;
+    -moz-box-ordinal-group: 2;
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+}
+/*侧边栏伸缩样式*/
+aside {
+    -moz-box-ordinal-group: 3;
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 3;
+    -webkit-order: 3;
+    order: 3;
+}
+form {
+	border:1px solid #A4CDF2;
+	margin: auto;
+	width: 60%;
+}
+	
+	fieldset{/* 边框设置 */
+		border:1px solid #A4CDF2;
+	}
+	fieldset legend{
+		clear:left;
+		margin: left;
+		color: #1E7ACE;
+		font-weight:bold;
+		padding:3px 20px 3px 20px;
+		border:1px solid #A4CDF2;
+	}
+input{
+
+            font-size:12px;
+             /* 设置输入框中字体的大小 */
+
+            height:30px; 
+            /* 设置输入框的高度 */
+
+            border-radius:4px; 
+            /* 设置输入框的圆角的大小 */
+
+            border:1px solid #c8cccf;
+            /* 设置输入框边框的粗细和颜色 */
+
+            color:#986655; 
+            /* 设置输入框中文字的颜色 */
+
+            outline:0; 
+            /* 将输入框点击的时候出现的边框去掉 */
+
+            text-align:medium; 
+            /* 设置输入框中文字的位置 */
+
+            padding-left: 10px;
+            /* 将输入框设置为块级元素 */
+
+            cursor: pointer;
+
+             box-shadow: 2px 2px 5px 1px #ccc;  
+
+            }
+
+         input::-webkit-input-placeholder{
+             color: #986655;
+             font-size: 12px;
+         }
+input:hover {
+	background-color: #47dcf9;
+}
+
+
+button {
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;   
+  text-decoration: none;
+  outline: none;
+  color: #87cefa;
+  background-color: #ffffff;
+  border: 2px solid #008cba;
+  border-radius: 8px;
+  box-shadow: 0 9px #999;
+}
+ 
+button:hover {background-color: #dcdcdc}
+ 
+button:active {
+  background-color: #ffffff;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

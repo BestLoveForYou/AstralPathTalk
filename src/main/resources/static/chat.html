@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>群聊</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/js/app2.js"></script>
+   		<link href="/css/index.css" rel="stylesheet" type="text/css" />
+		<link href="/css/text.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>
+
+<header class="f">AstralPath - 星途
+		</header>
+<section>
+    	<article>
+    	    <div id="chat" style="display: none;">
+    <div>
+        <label for="name">请输入聊天内容：</label>
+        <input type="text" id="content" placeholder="聊天内容">
+    			</div>
+    			<button id="send" type="button">发送</button>
+   			 <div id="greetings" class="textBox2">
+   			     <div id="conversation" style="display: none">群聊进行中...</div>
+   			 </div>
+			</div>
+			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
+    	 </article>
+		<nav>
+			 <a href="/" class="a">星途永恒</a>
+			 <br>
+			 <br>
+			 <a href="/user/index.html" class="b">用户</a><br>
+			 <a href="/text/index.html" class="b">文章</a><br>
+			 <a href="/mb/index.html" class="b">留言板</a><br>
+			 <br>
+			 <a href="/markdown/index.html" class="b">Markdown编辑器</a><br>
+			 <a href="/chat.html" class="b">公共聊天室</a>
+		</nav>
+   		<aside>
+			
+		</aside>
+		</section>
+		<footer>
+			<p>鄂ICP备2021014649号-2</p>
+		</footer>
+
+</body>
+</html>

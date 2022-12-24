@@ -1,0 +1,35 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>让HTML文本框textarea里的换行等格式用js保留下来</title>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+<textarea name="textContent" cols="100" rows="15" id="textContent"></textarea>
+<br />
+<input type="button" name="Submit" value="转换输出" οnclick="outHTML()" />
+<input name="checkbox" type="checkbox" id="checkbox" value="checkbox" checked="checked" />
+<label for="checkbox" style="color:#F00">启用转换输出</label>
+</form>
+<div id="out" style="border:1px solid #F90; padding:10px; background:#FFF8DC; margin-top:10px">请在上面文本框录入带HTML标记的文本测试！</div>
+<script type="text/javascript">
+/**********************************************************
+* author Tang Guohui, created: 2007-12-9 12:30:15
+**********************************************************/
+function outHTML() {
+var getValue=document.getElementById("textContent").value;
+var endValue=((getValue.replace(/<(.+?)>/gi,"<$1>")).replace(/ /gi," ")).replace(/\n/gi,"|");
+/*
+(1)转义“<”、“>”
+(2)改半角空格为 
+(3)保留换行
+*/
+
+if (document.getElementById("checkbox").checked==true) {
+document.getElementById("out").innerHTML=endValue;
+}else{
+document.getElementById("out").innerHTML=getValue;
+}
+
+}//end outHTML function
+</script>
+</body>

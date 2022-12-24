@@ -1,0 +1,93 @@
+.text {
+  /* 设置固定的宽度 */
+		 width: 600px;
+		 /* 裁剪多余的 */
+		 overflow : hidden;
+		 /* 多余的以省略号出现 */
+		 text-overflow: ellipsis;
+		 /* 将对象作为弹性伸缩盒子模型显示 */
+		 display: -webkit-box;
+		 /* 限制再一个块元素再文本显示的行数 */
+		 -webkit-line-clamp: 2;
+		 /* 设置或检索伸缩盒对象的子元素的排列方式 */
+		 -webkit-box-orient: vertical;
+		
+}
+.text2 {
+	font-size: 40px;
+}
+.text3 {
+	text-align: right;
+}
+.title {
+	color: #020202;
+	font-size: 50px;
+}
+.textBox {
+	height:600px;
+	width:90%;
+	overflow:auto;
+}
+.textBox1 {
+	height:500px;
+	width:1000px;
+	overflow:auto;
+}
+.textBox2 {
+	height:500px;
+	width:1000px;
+	overflow:auto;
+}
+.textBox3 {
+	height:100px;
+	width:1000px;
+	overflow:auto;
+}
+.textc {
+	width:100%;
+	height:80%;
+	overflow:auto;
+	border-radius:2px; 
+	font-size:30px;
+	color: #383838;
+	 white-space: pre-line;
+}
+.t1 {
+
+            font-size:30px;
+             /* 设置输入框中字体的大小 */
+			width:90%;
+            height:40px; 
+            /* 设置输入框的高度 */
+
+            border-radius:4px; 
+            /* 设置输入框的圆角的大小 */
+
+            border:1px solid #c8cccf;
+            /* 设置输入框边框的粗细和颜色 */
+
+            color:#986655; 
+            /* 设置输入框中文字的颜色 */
+
+            outline:0; 
+            /* 将输入框点击的时候出现的边框去掉 */
+
+            text-align:medium; 
+            /* 设置输入框中文字的位置 */
+
+            padding-left: 10px;
+            /* 将输入框设置为块级元素 */
+
+            cursor: pointer;
+
+             box-shadow: 2px 2px 5px 1px #ccc;  
+
+            }
+
+         input::-webkit-input-placeholder{
+             color: #986655;
+             font-size: 30px;
+         }
+.t1:hover {
+	background-color: #47dcf9;
+}

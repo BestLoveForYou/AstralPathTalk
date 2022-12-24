@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    	<link href="/css/index.css" rel="stylesheet" type="text/css" />
+    	<link href="/css/text.css" rel="stylesheet" type="text/css" />
+    <title>
+		AstralPath文章阅读
+    </title>
+    <script src="/js/text.js"></script>
+<script src="/webjars/jquery/jquery.min.js"></script>
+    	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+
+<body>
+<header class="f">AstralPath - 星途
+		</header>
+		<section>
+    	<article>
+<div class="textBox1">
+	 <script>
+    	var xmlHttp = createXMLHTTPObject();
+    	var para = window.location.search;
+    	para=para.substring(1);
+    	a = para.split("&");
+    	var url = "rest?id=" + a[0].split("=")[1]; 
+    	
+    	xmlHttp.open("GET",url, false);
+    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+    	xmlHttp.send("callback=functionName");
+    	var obj = JSON.parse(xmlHttp.responseText);
+    	document.write("<h1>" + obj.title + "</h1><hr>" + obj.body);
+    	</script>
+</div>
+<hr>
+<div class="textBox3">
+	<script>
+    	var xmlHttp1 = createXMLHTTPObject();
+    	var para = window.location.search;
+    	para=para.substring(1);
+    	a = para.split("&");
+    	url = "getComment?id=" + a[0].split("=")[1]; 
+    	xmlHttp1.open("GET",url, false);
+    	xmlHttp1.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+    	xmlHttp1.send("callback=functionName");
+    	obj = JSON.parse(xmlHttp1.responseText);
+
+    	for(var i = 0; i <= obj.length; i++){
+    		document.write("<p>" + obj[i].body + "</p><p class='text3'>" + obj[i].byEmail + "</p>");
+		}
+    	
+    </script>
+</div>
+<iframe id="iframe" name="iframe" style="display:none;"></iframe>
+    	 </article>
+		<nav>
+			 <a href="/" class="a">星途永恒</a>
+			 <br>
+			 <br>
+			 <a href="/user/index.html" class="b">用户</a><br>
+			 <a href="/text/index.html" class="b">文章</a><br>
+			 <a href="/mb/index.html" class="b">留言板</a><br>
+			 <br>
+			 <a href="/markdown/index.html" class="b">Markdown编辑器</a><br>
+			 <a href="/chat.html" class="b">公共聊天室</a>
+			 <br>
+			 <br>
+			 <script type="text/javascript">
+			 	document.write("<a href='/text/comment.html?id=" +a[0].split("=")[1] + "' class='b'>评论</a>");
+			 </script>
+			 
+		</nav>
+   		<aside>
+			
+		</aside>
+		</section>
+		<footer>
+			<p>鄂ICP备2021014649号</p>
+		</footer>
+</body>
+</html>
