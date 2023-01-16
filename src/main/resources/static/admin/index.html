@@ -18,29 +18,20 @@
 		</header>
 <section>
     	<article>
-    	    <h1>AstralPath - Studio工作室</h1>
-			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
-			<div class="div0">
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
+    	    <h1>AstralPath - Studio后台</h1>
+    	    <div class="div0">
+
+   				<div class="div1">
+   					<p>使用线程数:</p>
+   					<p id="thread"></p>
+   					
    				</div>
-   				<div class="div2">
-   					<h1>AstralPathTalk</h1>
-   					<a href='https://blog.csdn.net/qq_56323695/article/details/128462287?spm=1001.2014.3001.5501'>完全开源的论坛系统</a>
-   				</div>
-			</div>
-			<br>
-			<div class="div0">
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
-   				</div>
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
+   				<div class="div1">
+   					<p>权限等级:</p>
+					<p id="le"></p>
    				</div>
 			</div>
+			<button onclick="ctt()">刷新</button>&nbsp;<br><button type="button" onclick='window.open("/admin/check.html")'>审核文章</button>
 			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
     	 </article>
 		<nav>
@@ -97,6 +88,57 @@
     var message_Path = '/live2d/';//资源目录，如果目录不对请更改
     var talkAPI = "https://www.apishop.net/#/api/detail/?productID=122";//如果有类似图灵机器人的聊天接口请填写接口路径（注意这里填写的是接口，没有可空着，页面上就不会显示对话按钮）
 </script>
+
+<script>
+function createXMLHTTPObject(){
+    var XMLHttpFactories = [// 兼容不同浏览器和版本的创建函数数组
+        function () {return new XMLHttpRequest()},
+        function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+        function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+        function () {return new ActiveXObject("Microsoft.XMLHTTP")},
+    ];
+    var xmlhttp = false;
+    for (var i = 0; i < XMLHttpFactories.length; i ++ ){ 
+	//尝试调用匿名函数，如果成功则返回XMLHttpRequest对象，否则继续调用下一个
+        try{
+            xmlhttp = XMLHttpFactories[i]();
+        }catch (e){
+            continue; 			// 如果发生异常，则继续下一个函数调用
+        }
+        break; 					// 如果成功，则中止循环
+    }
+    return xmlhttp; 				// 返回对象实例
+}
+
+    		var xmlHttp = createXMLHTTPObject();
+	    	var url = "getUserLogin"; 
+	    	xmlHttp.open("POST",url, false);
+	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+	    	xmlHttp.send("callback=functionName");
+	    	var obj = JSON.parse(xmlHttp.responseText);
+	    	//1.设置内容。
+	    	if(obj.role >= 3) {
+	    	} else {
+	    		window.location.href="/error/4xx.html";
+			}
+	    	
+	    	var jb = document.getElementById("le");
+	    	jb.innerHTML = obj.role;
+	    	
+	  		ctt();
+	    	
+	  		function ctt() {
+	  			var xmlHttp1 = createXMLHTTPObject();
+		    	url = "thread"; 
+		    	xmlHttp1.open("GET",url, false);
+		    	xmlHttp1.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+		    	xmlHttp1.send("callback=functionName");
+		  		var thread= document.getElementById("thread");
+		  		thread.innerHTML = xmlHttp1.responseText;
+	  		}
+	    
+</script>
+
 <script type="text/javascript" src="/js/live2d.js"></script>
 <script type="text/javascript" src="/js/message.js"></script>
 

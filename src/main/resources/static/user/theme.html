@@ -44,32 +44,30 @@
     	<div class="textBox">
     		<p class='e'>
     		<script>
+    		var para = window.location.search;
+        	para=para.substring(1);
+        	a = para.split("&");
+        	
     		var xmlHttp = createXMLHTTPObject();
-	    	var url = "getUserLogin"; 
+	    	var url = "getUserByEmail?email=" + a[0].split("=")[1]; 
 	    	xmlHttp.open("POST",url, false);
 	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
 	    	xmlHttp.send("callback=functionName");
+
 	    	var obj = JSON.parse(xmlHttp.responseText);
-	    	//1.设置内容。
+	    	
 	    	url = "fan/get?id=" + obj.id; 
 	    	xmlHttp.open("GET",url, false);
 	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
 	    	xmlHttp.send("callback=functionName");
 	    	var obj1 = JSON.parse(xmlHttp.responseText);
-	    	url = "fan/get2?id=" + obj.id; 
-	    	xmlHttp.open("GET",url, false);
-	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
-	    	xmlHttp.send("callback=functionName");
-	    	var obj2 = JSON.parse(xmlHttp.responseText);
-	    	if(obj.username == undefined) {
-	    		document.write("<p class='e'>未登录</p>");
-			} else {
-				document.write("<p class='e'>用户名:" + obj.username + "<br><p id='title'>称号" + obj.title + "  粉丝数:" + obj1.length + "<button type='button' onclick='dianwo()'>查看粉丝</button>&nbsp;&nbsp;关注:" + obj2.length + "<a href='/user/guanzhu.html'>查看关注</a></p>");
-				document.write("金额:" + obj.money + "");
+	    	//1.设置内容。
+				document.write("<p class='e'>用户名:" + obj.username + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='/user/fan/guanzhu?id=" + obj.id + "'>关注 </a><br><p id='title'>称号" + obj.title + "  粉丝数:" + obj1.length + "</p>");
+				document.write("<br>金额:" + obj.money + "");
 				document.write("<br>等级:" + (obj.level / 10) + "级");
 				document.write("<br>发帖:" + obj.notenumber + "篇");
 				document.write("<h1>文章:</h1>");
-				xmlHttp.open("POST","getUserAllText", false);
+				xmlHttp.open("POST","getUserAllTextByEmail?email=" + a[0].split("=")[1], false);
 		    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
 		    	xmlHttp.send("callback=functionName");
 		    	obj = JSON.parse(xmlHttp.responseText);
@@ -77,40 +75,11 @@
 		    		document.write("<div><a href='/text/read.html?id=" + obj[i].id + "' class='title'>" + obj[i].title+ "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p class='text'>" + obj[i].body + "</p><p>作者:" + obj[i].author+ "</p></div><hr>");
 
 				}
-			}
     			
     		</script>
     		</p>
-    		<div class="zhezhao" id='zhezhao'>
-			<div class="tankuang">
-				<div id="header">
-					<script>
-						document.write("粉丝数:" + obj1.length + "<hr><div class='textBox'>");
-						
-						for(var i = 0; i <obj1.length; i++){
-				    		document.write("<a href='/user/theme.html?id=" + obj1[i].userid + "'>" + obj1[i].username + "</a><hr>");
-
-						}
-						
-					</script>
-					</div>
-					<div id="header-right" onclick="hidder()">x</div>
-				</div>
-			</div>
-			
-		</div>
-		<script type="text/javascript">
-			document.getElementById('zhezhao').style.display="none";
-			function dianwo(){
-				document.getElementById('zhezhao').style.display="";
-			}
-			function hidder(){
-				document.getElementById('zhezhao').style.display="none";
-			}
-
-		</script>
-		</div>
 			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
+			</div>
     	 </article>
 		<nav>
 			 <a href="/" class="a">星途永恒</a>

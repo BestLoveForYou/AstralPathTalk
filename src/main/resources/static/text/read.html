@@ -30,7 +30,7 @@
     	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
     	xmlHttp.send("callback=functionName");
     	var obj = JSON.parse(xmlHttp.responseText);
-    	document.write("<h1>" + obj.title + "</h1><hr>" + obj.body);
+    	document.write("<h1>" + obj.title + "</h1><hr><a class='text3' href=/user/theme.html?email=" + obj.author + ">By - " + obj.author + "</a><hr>" + obj.body);
     	</script>
 </div>
 <hr>
@@ -47,7 +47,8 @@
     	obj = JSON.parse(xmlHttp1.responseText);
 
     	for(var i = 0; i <= obj.length; i++){
-    		document.write("<p>" + obj[i].body + "</p><p class='text3'>" + obj[i].byEmail + "</p>");
+    		
+    		document.write("<p>" + obj[i].body + "</p><a class='text3' href=/user/theme.html?email=" + obj[i].byEmail + ">By - " + obj[i].byEmail + "</a>" );
 		}
     	
     </script>
@@ -61,6 +62,7 @@
 			 <a href="/user/index.html" class="b">用户</a><br>
 			 <a href="/text/index.html" class="b">文章</a><br>
 			 <a href="/mb/index.html" class="b">留言板</a><br>
+			 <a href="/trans/index.html" class="b">翻译</a><br>
 			 <br>
 			 <a href="/markdown/index.html" class="b">Markdown编辑器</a><br>
 			 <a href="/chat.html" class="b">公共聊天室</a>

@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="/css/text.css" rel="stylesheet" type="text/css" />
     <link href="/css/tanchuang.css" rel="stylesheet" type="text/css" />
 	<title>AstralPath - 星途</title>
 	<meta name='description' content='AstralPath工作室官网 - AstralPathTalk测试页'>
     <link rel="stylesheet" href="/css/live2d.css"/>
    	<link href="/css/index.css" rel="stylesheet" type="text/css" />
+
    	<link href="/css/admin.css" rel="stylesheet" type="text/css" />
    	<script src="/js/tanchuang.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
@@ -18,29 +20,13 @@
 		</header>
 <section>
     	<article>
-    	    <h1>AstralPath - Studio工作室</h1>
-			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
-			<div class="div0">
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
-   				</div>
-   				<div class="div2">
-   					<h1>AstralPathTalk</h1>
-   					<a href='https://blog.csdn.net/qq_56323695/article/details/128462287?spm=1001.2014.3001.5501'>完全开源的论坛系统</a>
-   				</div>
-			</div>
-			<br>
-			<div class="div0">
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
-   				</div>
-   				<div class="div2">
-   					<h1>AstralPathSQL</h1>
-   					<a href='/text'>一款完全基于java的SQL数据库系统</a>
-   				</div>
-			</div>
+    	    <h1>AstralPath - Studio后台</h1>
+    	    <div class="textBox1">
+    	    	用户邮箱<p id="useremail"></p>
+    	    	标题<p id="title1"></p><br>
+    	    	<p id="text1"></p>
+    	    </div>
+			<button onclick="ctt2()">封禁</button><button type="button" onclick="ctt()">下一个</button>
 			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
     	 </article>
 		<nav>
@@ -97,6 +83,63 @@
     var message_Path = '/live2d/';//资源目录，如果目录不对请更改
     var talkAPI = "https://www.apishop.net/#/api/detail/?productID=122";//如果有类似图灵机器人的聊天接口请填写接口路径（注意这里填写的是接口，没有可空着，页面上就不会显示对话按钮）
 </script>
+
+<script>
+function createXMLHTTPObject(){
+    var XMLHttpFactories = [// 兼容不同浏览器和版本的创建函数数组
+        function () {return new XMLHttpRequest()},
+        function () {return new ActiveXObject("Msxml2.XMLHTTP")},
+        function () {return new ActiveXObject("Msxml3.XMLHTTP")},
+        function () {return new ActiveXObject("Microsoft.XMLHTTP")},
+    ];
+    var xmlhttp = false;
+    for (var i = 0; i < XMLHttpFactories.length; i ++ ){ 
+	//尝试调用匿名函数，如果成功则返回XMLHttpRequest对象，否则继续调用下一个
+        try{
+            xmlhttp = XMLHttpFactories[i]();
+        }catch (e){
+            continue; 			// 如果发生异常，则继续下一个函数调用
+        }
+        break; 					// 如果成功，则中止循环
+    }
+    return xmlhttp; 				// 返回对象实例
+}
+
+    		var xmlHttp = createXMLHTTPObject();
+	    	var url = "getUserLogin"; 
+	    	xmlHttp.open("POST",url, false);
+	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+	    	xmlHttp.send("callback=functionName");
+	    	var obj = JSON.parse(xmlHttp.responseText);
+	    	//1.设置内容。
+	    	if(obj.role >= 3) {
+	    	} else {
+	    		window.location.href="/error/4xx.html";
+			}
+	    	
+	  		ctt();
+	  		
+	    	
+	  		function ctt() {
+	  			var xmlHttp1 = createXMLHTTPObject();
+		    	url = "/admin/shenghe"; 
+		    	xmlHttp1.open("GET",url, false);
+		    	xmlHttp1.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
+		    	xmlHttp1.send("callback=functionName");
+
+		    	obj = JSON.parse(xmlHttp1.responseText);
+		    	var email = document.getElementById("useremail");
+		    	email.innerHTML = obj.author;
+		    	
+		    	var title = document.getElementById("title1");
+		    	title1.innerHTML = obj.title;
+		    	
+		    	var text = document.getElementById("text1");
+		    	text1.innerHTML = obj.body;
+	  		}
+	    
+</script>
+
 <script type="text/javascript" src="/js/live2d.js"></script>
 <script type="text/javascript" src="/js/message.js"></script>
 

@@ -1,17 +1,22 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<script src="/webjars/jquery/jquery.js"></script>
 		<link href="/css/index.css" rel="stylesheet" type="text/css" />
 		<link href="/css/text.css" rel="stylesheet" type="text/css" />
-		<link href="/css/tanchuang.css" rel="stylesheet" type="text/css" />
+		<meta name='description' content='AstralPath工作室官网 - 文章页'>
 		<title>AstralPath - 星途</title>
-		<script src="/js/tanchuang.js"></script>
 		<script src="/webjars/jquery/jquery.min.js"></script>
     	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
     	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-       <link rel="stylesheet" href="/css/live2d.css"/>
-		<script>
+		<script src="/js/text.js"></script>
+		<link rel="stylesheet" href="/css/live2d.css"/>
+	</head>
+	<body>
+		<header class="f">AstralPath - 星途
+		</header>
+		<section>
+    	<article>
+    			<script>
 	    function createXMLHTTPObject(){
 	        var XMLHttpFactories = [// 兼容不同浏览器和版本的创建函数数组
 	            function () {return new XMLHttpRequest()},
@@ -31,86 +36,87 @@
 	        }
 	        return xmlhttp; 				// 返回对象实例
 	    }
-	    
+	    function findPosition(str, queryStr, pon) {
+	    	  var x = str.indexOf(queryStr)
+	    	  for (var i = 0; i < pon; i++) {
+	    	    x = str.indexOf(queryStr, x + 1)
+	    	  }
+	    	  return x
+	    	}
 
-		</script>
-	</head>
-	<body>
-		
-		<header class="f">AstralPath - 星途
-		</header>
-		<section>
-    	<article>
-    	<div class="textBox">
-    		<p class='e'>
-    		<script>
-    		var xmlHttp = createXMLHTTPObject();
-	    	var url = "getUserLogin"; 
+		function cr() {
+			var xmlHttp = createXMLHTTPObject();
+			var x=  document.getElementById("text1").value//获取输入框元素
+			var myselect=document.getElementById("select");
+			var index1=myselect.selectedIndex ; 
+			x = x.replaceAll('"','');
+	    	var url = "api?text=" + x + "&to=" + myselect.options[index1].value; 
 	    	xmlHttp.open("POST",url, false);
 	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
 	    	xmlHttp.send("callback=functionName");
 	    	var obj = JSON.parse(xmlHttp.responseText);
+	    	var a= document.getElementById("text2");
 	    	//1.设置内容。
-	    	url = "fan/get?id=" + obj.id; 
-	    	xmlHttp.open("GET",url, false);
-	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
-	    	xmlHttp.send("callback=functionName");
-	    	var obj1 = JSON.parse(xmlHttp.responseText);
-	    	url = "fan/get2?id=" + obj.id; 
-	    	xmlHttp.open("GET",url, false);
-	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
-	    	xmlHttp.send("callback=functionName");
-	    	var obj2 = JSON.parse(xmlHttp.responseText);
-	    	if(obj.username == undefined) {
-	    		document.write("<p class='e'>未登录</p>");
-			} else {
-				document.write("<p class='e'>用户名:" + obj.username + "<br><p id='title'>称号" + obj.title + "  粉丝数:" + obj1.length + "<button type='button' onclick='dianwo()'>查看粉丝</button>&nbsp;&nbsp;关注:" + obj2.length + "<a href='/user/guanzhu.html'>查看关注</a></p>");
-				document.write("金额:" + obj.money + "");
-				document.write("<br>等级:" + (obj.level / 10) + "级");
-				document.write("<br>发帖:" + obj.notenumber + "篇");
-				document.write("<h1>文章:</h1>");
-				xmlHttp.open("POST","getUserAllText", false);
-		    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
-		    	xmlHttp.send("callback=functionName");
-		    	obj = JSON.parse(xmlHttp.responseText);
-		    	for(var i = 0; i <= obj.length; i++){
-		    		document.write("<div><a href='/text/read.html?id=" + obj[i].id + "' class='title'>" + obj[i].title+ "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p class='text'>" + obj[i].body + "</p><p>作者:" + obj[i].author+ "</p></div><hr>");
+	    	if (myselect.options[index1].value == "en") {
+	    		a.innerHTML = xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"','');
+	    	} else {
+		    	if (myselect.options[index1].value == "fra") {
+		    		a.innerHTML = xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"','');
+		    	} else {
+		    		if (myselect.options[index1].value == "de") {
+			    		a.innerHTML = xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"','');
+			    	} else {
+			    		if (myselect.options[index1].value == "spa") {
+				    		a.innerHTML = xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"','');
+				    	} else {
+				    		if (myselect.options[index1].value == "it") {
+					    		a.innerHTML = xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"','');
+					    	} else {
+					    		a.innerHTML = toChineseStr(xmlHttp.responseText.substring(this.findPosition(xmlHttp.responseText, '"', 16),this.findPosition(xmlHttp.responseText, '"', 17)).replace('"',''));
+					    	}	
+				    	}
+			    	}
+		    	}	    	
+		    }
+	    }
+		
 
-				}
-			}
-    			
-    		</script>
-    		</p>
-    		<div class="zhezhao" id='zhezhao'>
-			<div class="tankuang">
-				<div id="header">
-					<script>
-						document.write("粉丝数:" + obj1.length + "<hr><div class='textBox'>");
-						
-						for(var i = 0; i <obj1.length; i++){
-				    		document.write("<a href='/user/theme.html?id=" + obj1[i].userid + "'>" + obj1[i].username + "</a><hr>");
-
-						}
-						
-					</script>
-					</div>
-					<div id="header-right" onclick="hidder()">x</div>
-				</div>
-			</div>
-			
-		</div>
-		<script type="text/javascript">
-			document.getElementById('zhezhao').style.display="none";
-			function dianwo(){
-				document.getElementById('zhezhao').style.display="";
-			}
-			function hidder(){
-				document.getElementById('zhezhao').style.display="none";
-			}
-
+		function toChineseStr(unicodeStr) {
+		    if (unicodeStr == '') {
+		        return 'Please input hexadecimal Unicode';
+		    }
+		    unicodeStr = unicodeStr.split('\\u');
+		    let chineseStr = '';
+		    for (let i = 0, iLength = unicodeStr.length; i < iLength; i++) {
+		        chineseStr += String.fromCharCode(parseInt(unicodeStr[i], 16));
+		    }
+		    return chineseStr;
+		}
 		</script>
-		</div>
+		
+		<textarea cols="25" rows="5" class="textc1" id="text1" placeholder="说点什么吧"></textarea>
 			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
+			
+			<button id="create" type="button" onclick="cr()">翻译 -></button>
+			<select id="select">
+    			<option value="en">英语</option>
+    			<option value="jp">日本語</option>
+    			<option value="de">德语</option>
+    			<option value="fra">法语</option>
+    			<option value="ru">俄语</option>
+    			<option value="zh">中文</option>
+    			<option value="el">希腊语</option>
+    			<option value="spa">西班牙语</option>
+    			<option value="ara">阿拉伯语</option>
+    			<option value="it">意大利语</option>
+    			
+			</select>
+			
+		<textarea cols="25" rows="5" class="textc1" id="text2" placeholder="结果"></textarea>
+			<iframe id="iframe" name="iframe" style="display:none;"></iframe>
+			
+		
+		<iframe id="iframe" name="iframe" style="display:none;"></iframe>
     	 </article>
 		<nav>
 			 <a href="/" class="a">星途永恒</a>
@@ -121,18 +127,8 @@
 			 <a href="/mb/index.html" class="b">留言板</a><br>
 			 <a href="/trans/index.html" class="b">翻译</a><br>
 			 <br>
-			 			 <a href="/user/login.html" class="b">登录</a><br>
-			 <a href="/user/reg.html" class="b">注册</a>
-			 <br>
-			 <a href="/user/change.html" class="b">编辑用户信息</a>
-			 <br>
-			 <a href="/user/logout" class="b">登出</a>
-			 <br>
-			 <br>
 			 <a href="/markdown/index.html" class="b">Markdown编辑器</a><br>
 			 <a href="/chat.html" class="b">公共聊天室</a>
-			 <br>
-
 		</nav>
    		<aside>
 			
@@ -141,7 +137,7 @@
 		<footer>
 			<p>鄂ICP备2021014649号-2</p>
 		</footer>
-					<div id="landlord" style="left:5px;bottom:0px;">
+<div id="landlord" style="left:5px;bottom:0px;">
     <div class="message" style="opacity:0"></div>
     <canvas id="live2d" width="500px" height="560px" class="live2d"></canvas>
     <div class="live_talk_input_body">
@@ -176,7 +172,6 @@
 </script>
 <script type="text/javascript" src="/js/live2d.js"></script>
 <script type="text/javascript" src="/js/message.js"></script>
-
 	</body>
 
 </html>

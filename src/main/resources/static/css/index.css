@@ -12,6 +12,10 @@ html, body {
 body {
     min-width: 100%;
 }
+.title {
+	color: red;
+	font-size:20px;
+}
 .f {
 	color: #ffffff;
 }
@@ -20,9 +24,8 @@ body {
 	font-size: 18px;
 }
 .a {
-	color: #020202;
+	color: green;
 	font-size: 30px;
-	color: #4c4c4c;
 }
 .e {
 	color: #020202;

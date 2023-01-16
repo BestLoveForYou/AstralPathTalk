@@ -52,6 +52,15 @@
 	color: #383838;
 	 white-space: pre-line;
 }
+.textc1 {
+	width:100%;
+	height:30%;
+	overflow:auto;
+	border-radius:2px; 
+	font-size:30px;
+	color: #383838;
+	 white-space: pre-line;
+}
 .t1 {
 
             font-size:30px;

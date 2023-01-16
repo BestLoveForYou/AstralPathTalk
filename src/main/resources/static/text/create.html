@@ -36,7 +36,7 @@
 			var x=  document.getElementById("text1").value//获取输入框元素
 			var y=  document.getElementById("title").value//获取输入框元素
 	    	url = "create?title=" + y + "&target=测试&body=" + x; 
-			url = url.replace(/\n/gi,"<br>");//保留换行符
+			url = url.replaceAll(/\n/gi,"<br>");//保留换行符
 	    	xmlHttp.open("POST",url, false);
 	    	xmlHttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');	
 	    	xmlHttp.send("callback=functionName");
