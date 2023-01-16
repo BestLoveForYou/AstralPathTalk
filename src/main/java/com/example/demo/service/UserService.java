@@ -30,6 +30,9 @@ public class UserService {
     public int updateName(Integer id,String username) {
         return userd.updateName(id, username);
     }
+    public int updateTitle(Integer id,String title) {
+        return userd.updateTitle(id, title);
+    }
     public int updatePass(Integer id,String password) {
         return userd.updatePass(id, password);
     }
@@ -41,6 +44,9 @@ public class UserService {
     }
     public User getUserById(Integer id) {
         return userd.getUserById(id);
+    }
+    public User getUserByEmail(String email) {
+        return userd.getUserByEmail(email);
     }
     public User checkUser(String email) {
         return userd.checkUserLogin(email);

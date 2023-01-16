@@ -14,9 +14,9 @@ public class UserDao {
 	@Autowired
 	JdbcTemplate jdbc;
 	public int addUser(User user) {
-		return jdbc.update("INSERT INTO `webtest`.`user`(`id`,`username`,`password`,`money`,`level`,`notenumber`,`locked`,`email`,`date`,`role`) VALUES "
+		return jdbc.update("INSERT INTO `webtest`.`user`(`id`,`username`,`password`,`money`,`level`,`notenumber`,`locked`,`email`,`date`,`role`,`title`) VALUES "
 				+ "(?,?,?,?,?,?,?,?,?,?)"
-				,null,user.getUsername(),user.getPassword(),user.getMoney(),user.getLevel(),user.getNotenumber(),user.getLocked(),user.getEmail(),user.getDate(),user.getRole());
+				,null,user.getUsername(),user.getPassword(),user.getMoney(),user.getLevel(),user.getNotenumber(),user.getLocked(),user.getEmail(),user.getDate(),user.getRole(),user.getTitle());
 	}
 	public int updateMoney(Integer id,Integer money) {
 		return jdbc.update("UPDATE `webtest`.`user` SET `money`=? WHERE `id`=?",money,id);
@@ -33,6 +33,9 @@ public class UserDao {
 	public int updateName(Integer id,String username) {
 		return jdbc.update("UPDATE `webtest`.`user` SET `username`=? WHERE `id`=?",username,id);
 	}
+	public int updateTitle(Integer id,String title) {
+		return jdbc.update("UPDATE `webtest`.`user` SET `title`=? WHERE `id`=?",title,id);
+	}
 	public int updatePass(Integer id,String num) {
 		return jdbc.update("UPDATE `webtest`.`user` SET `password`=? WHERE `id`=?",num,id);
 	}
@@ -46,6 +49,10 @@ public class UserDao {
 	public User getUserById(Integer id) {
 		return jdbc.queryForObject("SELECT * FROM user WHERE id = ?",
 				new BeanPropertyRowMapper<>(User.class),id);
+	}
+	public User getUserByEmail(String email) {
+		return jdbc.queryForObject("SELECT * FROM user WHERE email = ?",
+				new BeanPropertyRowMapper<>(User.class),email);
 	}
 	public User checkUserLogin(String email) {
 		return jdbc.queryForObject("SELECT * FROM user WHERE email = ?",

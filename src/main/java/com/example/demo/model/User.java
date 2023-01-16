@@ -11,6 +11,7 @@ public class User {
     private Integer locked;
     private String email;
     private int role;
+    private String title;
 	public Integer getId() {
 		return id;
 	}
@@ -71,10 +72,32 @@ public class User {
 	public void setRole(int i) {
 		this.role = i;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setMoney(Integer money) {
+		this.money = money;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+	public void setNotenumber(Integer notenumber) {
+		this.notenumber = notenumber;
+	}
+	public void setLocked(Integer locked) {
+		this.locked = locked;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", date=" + date + ", money="
 				+ money + ", level=" + level + ", notenumber=" + notenumber + ", locked=" + locked + ", email=" + email
-				+ "]";
+				+ ", role=" + role + ", title=" + title + "]";
 	}
+	
 }

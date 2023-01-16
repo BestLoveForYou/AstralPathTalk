@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Jb;
 import com.example.demo.model.MessageBoard;
+import com.example.demo.service.JbService;
 import com.example.demo.service.MBService;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +21,8 @@ import jakarta.servlet.http.HttpSession;
 public class MessageBoardController {
 	@Autowired
 	MBService mbService;
+	@Autowired
+	JbService jbService;
 	@GetMapping("/mb/get")
 	public List<MessageBoard> get() {
 		return mbService.getAllMessageBoardsDao();
@@ -34,5 +38,19 @@ public class MessageBoardController {
 		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 		m.setDate(fmt.format(date));
 		return mbService.addMessageBoardsDao(m);
+	}
+	@GetMapping("/mb/jb")
+	public String jb(HttpSession httpSession,int id) {
+		Date date = new Date();
+		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+
+		Jb jb = new Jb();
+		jb.setIsOver(0);
+		jb.setDate(fmt.format(date));
+		jb.setJb_by_player((Integer) httpSession.getAttribute("id"));
+		jb.setJb_id(id);
+		jb.setJb_mode(1);//1为留言
+		jbService.addJb(jb);
+		return "成功";
 	}
 }
