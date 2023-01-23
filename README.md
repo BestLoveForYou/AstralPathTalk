@@ -147,7 +147,7 @@ java -jar server.jar
 |/user/sign|GET|无|今日已签到!|每日签到的接口|
 |/user/logout|GET|无|完成|退出登录状态,删除session|
 |/user/change/username|GET|username|完成|更改用户名|
-|/user/change/passwor|GET|password|完成|更改密码|
+|/user/change/password|GET|password|完成|更改密码|
 |/user/getUserAllText|POST|无|文章(json[list])|获取改用户发布全部文章|
 |/user/fan/get|GET|id|(json[list])|获取改用户的粉丝|
 |/user/fan/get2|GET|id|(json[list])|获取改用户的关注|
